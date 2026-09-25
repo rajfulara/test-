@@ -1,0 +1,15 @@
+---
+- name: install httpd
+  ansible.builtin.yum:
+   name: httpd
+   state: present
+
+- name: start httpd
+  ansible.builtin.services:
+    name: httpd
+    state: started
+
+- name: enable httpd
+  ansible.builtin.services:
+     name: httpd
+     state: enabled
