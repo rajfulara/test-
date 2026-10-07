@@ -1,0 +1,16 @@
+---
+- name: create user group
+  ansible.builtin.group:
+    name: "{{ user_group }}"
+    state: present
+
+- name: create user
+  ansible.builtin.user:
+   name: "{{ username }}"
+   password: "{{ user_password }}"
+   group: "{{ user_group }}"
+   shell: "{{ user_shell }}"
+   create_home: true
+   state: present
+
+   

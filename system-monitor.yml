@@ -1,0 +1,36 @@
+---
+- name: collect system facts
+  ansible.builtin.setup:
+
+
+- name: show hostname
+  ansible.builtin.debug:
+    msg: "Hostname: {{ansible_hostname }}"
+
+- name: show os version
+  ansible.builtin.command: cat /etc/os-release
+  register: os_result
+  change_when: false
+  
+- name: show os info
+  ansible.builtin.debug:
+    msg: "{{ os_result.stdout }}"
+
+
+- name: check system cpu 
+  ansible.builtin.command: lscpu
+  register: cpu_result
+  change_when: false
+
+- name: display cpu info
+  ansible.builtin.debug:
+     msg: "{{ cpu_result.stdout }}"
+
+- name: check disk info
+  ansible.builtin.command: df -hT
+  register: disk_result
+  change_when: false
+
+- name: display disk info
+  ansible.builtin.debug:
+     msg: "{{ disk_result.stdout }}"
