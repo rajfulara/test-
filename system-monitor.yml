@@ -34,3 +34,5 @@
 - name: display disk info
   ansible.builtin.debug:
      msg: "{{ disk_result.stdout }}"
+
+     

@@ -1,0 +1,23 @@
+---
+- name: install httpd
+  ansible.builtin.yum:
+    name: httpd
+    state: present
+
+- name: start services
+  ansible.builtin.services:
+    name: httpd
+    state: started
+
+- name: enable httpd
+  ansible.builtin.services:
+     name: httpd
+     enabled: true
+  
+- name: create index.html page
+  ansible.builtin.file:
+     name: index.html
+     dest: /var/www/html
+     state: touch
+     contents: " Wellcome to silvereye "
+     mode: '0777'
